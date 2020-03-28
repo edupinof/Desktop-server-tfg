@@ -1,0 +1,8 @@
+<div class="row h-100 justify-content-center">
+    <div class="align-self-center stock">
+        <div class="row justify-content-center">{{weather?.data[0].name}} ({{weather?.data[0].symbol}})</div>
+        <div class="row justify-content-center">{{weather?.data[0].price}}<span class="currency">{{weather?.data[0].currency}}</span>
+            <span class="max-min ml-2"><span *ngIf="weather?.data[0].day_change>0">+</span>{{weather?.data[0].day_change}}<span class="currency">{{weather?.data[0].currency}}</span> ({{weather?.data[0].change_pct}}%)</span>
+        </div>
+    </div>
+</div>
