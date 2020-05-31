@@ -12,21 +12,29 @@ import { WeatherComponent } from './widgets/weather/weather.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StocksComponent } from './widgets/stocks/stocks.component';
 import { NewsComponent } from './widgets/news/news.component';
-
+import { SantoComponent } from './widgets/santo/santo.component';
+import { MotivationComponent } from './widgets/motivation/motivation.component';
+// Import ngx-twitter-timeline
+import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
+import { TwitterComponent } from './widgets/twitter/twitter.component';
 @NgModule({
   declarations: [
     AppComponent,
     DigitalClockComponent,
     WeatherComponent,
     StocksComponent,
-    NewsComponent
+    NewsComponent,
+    SantoComponent,
+    MotivationComponent,
+    TwitterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    NgxTwitterTimelineModule
   ],
   providers: [],
   bootstrap: [AppComponent]

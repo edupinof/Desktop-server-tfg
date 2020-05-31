@@ -1,0 +1,8 @@
+.titleNews {
+    position: absolute;
+    bottom: 0px;
+    width: calc(100% - 30px);
+    color: white;
+    background-color: rgba(0,0,0,0.8);
+    
+}

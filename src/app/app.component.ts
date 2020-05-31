@@ -11,6 +11,10 @@ export class AppComponent {
   digitalClock: any;
   weather: any;
   stocks: any;
+  news: any;
+  santo: any;
+  motivation: any;
+  twitter: any;
   constructor(  ) {
     firebase.initializeApp(environment.firebaseConfig);
     const dbRefConfObject = firebase.database().ref().child('configuracion');
@@ -21,6 +25,24 @@ export class AppComponent {
       
     });
 
+    const dbRefBgObject = firebase.database().ref().child('background-image');
+    dbRefBgObject.on('value', snap => {
+      console.log(snap.val());
+      document.getElementById('body').style['background-image'] = 'url(' + snap.val()['url'] + ')';
+      document.getElementById('body').style['background-size'] = 'cover';
+      document.getElementById('body').style['background-attachment'] = 'fixed';
+      document.getElementById('body').style['background-repeat'] = 'no-repeat';
+   
+      
+    });
+
+    const dbRefColorFontObject = firebase.database().ref().child('color-font');
+    dbRefColorFontObject.on('value', snap => {
+      console.log(snap.val());
+      document.getElementById('body').style['color'] = snap.val()['color'];
+   
+      
+    });
     const dbDigitalClockObject = firebase.database().ref().child('digital-clock');
     dbDigitalClockObject.on('value', snap => {
       console.log(snap.val());
@@ -50,6 +72,49 @@ export class AppComponent {
         this.stocks = 0;
       }     
     });
+
+  
+
+    const dbNewsObject = firebase.database().ref().child('news');
+    dbNewsObject.on('value', snap => {
+      console.log(snap.val());
+      if (snap.val()['block'] > 0 && snap.val()['block'] < 10){
+        this.news =  snap.val()['block'];
+      } else {
+        this.news = 0;
+      }     
+    });
+
+    const dbSantoObject = firebase.database().ref().child('santo');
+    dbSantoObject.on('value', snap => {
+      console.log(snap.val());
+      if (snap.val()['block'] > 0 && snap.val()['block'] < 10){
+        this.santo =  snap.val()['block'];
+      } else {
+        this.santo = 0;
+      }     
+    });
+
+    const dbMotivationObject = firebase.database().ref().child('motivation');
+    dbMotivationObject.on('value', snap => {
+      console.log(snap.val());
+      if (snap.val()['block'] > 0 && snap.val()['block'] < 10){
+        this.motivation =  snap.val()['block'];
+      } else {
+        this.motivation = 0;
+      }     
+    });
+
+    const dbTwitterObject = firebase.database().ref().child('twitter');
+    dbTwitterObject.on('value', snap => {
+      console.log(snap.val());
+      if (snap.val()['block'] > 0 && snap.val()['block'] < 10){
+        this.twitter =  snap.val()['block'];
+      } else {
+        this.twitter = 0;
+      }     
+    });
+
   }
 
 }

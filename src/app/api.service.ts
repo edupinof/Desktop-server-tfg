@@ -26,8 +26,14 @@ export class ApiService {
     return this.httpClient.get(uri);
   }
 
-  getNews(country) {
-    const uri = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=d46781c22ded49a88ee25c864133ee3a`;
+  getNews() {
+    const uri = `https://node-tfg-server.oa.r.appspot.com/news`;
+    return this.httpClient.get(uri);
+
+  }
+
+  getMotivation(){
+    const uri = `https://node-tfg-server.oa.r.appspot.com/motivation`;
     return this.httpClient.get(uri);
 
   }

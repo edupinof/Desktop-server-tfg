@@ -1,30 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
-
+import * as firebase from 'firebase';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-stocks',
   templateUrl: './stocks.component.html',
   styleUrls: ['./stocks.component.css']
 })
 export class StocksComponent implements OnInit {
-
-  weather: any;
+  stockName;
+  stocks: any;
   weatherIcon: string;
   constructor(private apiservice: ApiService) {
-    this.getStocks();
-    window.setInterval(() => {
+
+    const dbStocksNameObject = firebase.database().ref().child('stocksName');
+    dbStocksNameObject.on('value', snap => {
+      console.log(snap.val());
+      this.stockName = snap.val()['name'].split('(')[1];
+      this.stockName =this.stockName.split(')')[0];
       this.getStocks();
-    }, 1800000)
+    });
   }
+ 
+  
 
   getStocks() {
-    this.apiservice.getStocks('AAPL').subscribe((weather) => {
-      this.weather = weather;
-      console.log(this.weather);
-      this.weatherIcon = 'http://openweathermap.org/img/wn/' + this.weather.weather[0].icon + '@2x.png';
-      let example = {"coord":{"lon":-3.69,"lat":40.43},
-      "weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10n"}],"base":"stations","main":{"temp":278.38,"feels_like":273.18,"temp_min":277.59,"temp_max":279.26,"pressure":1016,"humidity":81},"visibility":10000,"wind":{"speed":5.1,"deg":40,"gust":10.3},"clouds":{"all":90},"dt":1579629860,"sys":{"type":1,"id":6443,"country":"ES","sunrise":1579591990,"sunset":1579627095},"timezone":3600,"id":3117732,"name":"Madrid","cod":200};
-    });
+    if (this.stockName){
+      this.apiservice.getStocks(this.stockName).subscribe((stocks) => {
+        this.stocks = stocks;
+        console.log(this.stocks);
+
+      });
+      }
+    window.setInterval(() => {
+
+    if (this.stockName){
+      this.apiservice.getStocks(this.stockName).subscribe((stocks) => {
+        this.stocks = stocks;
+        console.log(this.stocks);
+      });
+      }
+    }, 1800000)
+
   }
   
   

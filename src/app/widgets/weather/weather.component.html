@@ -1,7 +1,7 @@
 <div class="row h-100 justify-content-center">
     <div class="align-self-center weather">
         <div class="row justify-content-center"> {{weather?.name}}</div>
-        <div class="row justify-content-center"><img [src]="weatherIcon"></div>
+        <!-- <div class="row justify-content-center"><img [src]="weatherIcon"></div> -->
         <div class="row justify-content-center">{{weather?.main.temp | number: '1.0-0'}}º
             <span class="max-min ml-2">{{weather?.main.temp_max | number: '1.0-0'}}º<br>
             {{weather?.main.temp_min | number: '1.0-0'}}º</span>
