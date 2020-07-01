@@ -11,12 +11,20 @@ export class MotivationComponent implements OnInit {
 
   constructor(private apiservice: ApiService) {  
      this.apiservice.getMotivation().subscribe((moti) => {
-    this.motivationSentence = moti;
-    this.motivationSentence = this.motivationSentence.affirmation;
-    console.log(this.motivationSentence);
+      this.motivationSentence = moti;
+      this.motivationSentence = this.motivationSentence.affirmation;
+    }); 
+    this.apiservice.getMotivation().subscribe((moti) => {
+      this.motivationSentence = moti;
+      this.motivationSentence = this.motivationSentence.affirmation;
+    }); 
+    window.setInterval(() => {
+      this.apiservice.getMotivation().subscribe((moti) => {
+        this.motivationSentence = moti;
+        this.motivationSentence = this.motivationSentence.affirmation;
+      }); 
 
-  }); 
-
+    },  1800000);
   }
   ngOnInit() {
   }

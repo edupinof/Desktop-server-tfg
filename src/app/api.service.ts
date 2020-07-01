@@ -22,7 +22,7 @@ export class ApiService {
   }
 
   getStocks(stockName) {
-    const uri = `https://api.worldtradingdata.com/api/v1/stock?symbol=${stockName}&api_token=htBe6i5KYZzbivSnp7GgcXvZxBnNO85dcmLqAhMBR0yYqk16g9KdbpfqHOwM`;
+    const uri = `https://api.marketstack.com/v1/eod?symbols=${stockName}&access_key=1c8dbca1399932baad67e62221fd534a`;
     return this.httpClient.get(uri);
   }
 

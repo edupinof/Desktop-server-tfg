@@ -16,8 +16,8 @@ export class StocksComponent implements OnInit {
     const dbStocksNameObject = firebase.database().ref().child('stocksName');
     dbStocksNameObject.on('value', snap => {
       console.log(snap.val());
-      this.stockName = snap.val()['name'].split('(')[1];
-      this.stockName =this.stockName.split(')')[0];
+   
+      this.stockName = snap.val()['name'];
       this.getStocks();
     });
   }

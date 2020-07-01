@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-twitter',
@@ -8,10 +9,16 @@ import { ApiService } from 'src/app/api.service';
 })
 export class TwitterComponent implements OnInit {
 
-  motivationSentence: any;
+  userName: any;
 
   constructor(private apiservice: ApiService) {  
+    const dbStocksNameObject = firebase.database().ref().child('TwitterName');
+    dbStocksNameObject.on('value', snap => {
+      console.log();
+     
+      this.userName = snap.val()['name'];
 
+    });
 
   }
 

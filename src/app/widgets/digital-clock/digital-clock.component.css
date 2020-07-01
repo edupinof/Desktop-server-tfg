@@ -2,3 +2,6 @@
     font-family: 'Roboto Mono', monospace;
     font-size: 4em;
 }
+.clock p {
+    font-size: 0.4em;
+}    
